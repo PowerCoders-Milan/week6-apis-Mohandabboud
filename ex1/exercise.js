@@ -1,12 +1,17 @@
+
 var map;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
-  var marker = new google.maps.Marker({
-    position: {lat: -34.397, lng: 150.644},
-    map: map
-  });
+  navigator.geolocation.getCurrentPosition((position) => {
+    console.log(position.coords.latitude, position.coords.longitude);
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: position.coords.latitude, lng: position.coords.longitude},
+      zoom: 8
+    }) 
+    var marker = new google.maps.Marker({
+      position: {lat: position.coords.latitude, lng: position.coords.longitude},
+      map: map
+    })
+  })
 }
+
 
